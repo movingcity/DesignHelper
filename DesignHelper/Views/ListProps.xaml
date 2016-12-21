@@ -1,0 +1,101 @@
+﻿<controls:MetroWindow  x:Class="DesignHelper.ListProps"
+                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:syntaxHighlightBox="clr-namespace:AurelienRibon.Ui.SyntaxHighlightBox;assembly=AurelienRibon.Ui.SyntaxHighlightBox"
+                       SizeToContent="WidthAndHeight"
+                       Title="XamlToResx">
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl x:Name="flyoutsControl">
+            <controls:Flyout Header="Adapt"
+                             Position="Right"
+                             Theme="Adapt">
+                <Grid HorizontalAlignment="Stretch"
+                      Margin="10,10,300,10">
+                    <syntaxHighlightBox:SyntaxHighlightBox HorizontalAlignment="Stretch"
+                                                           IsLineNumbersMarginVisible="True"
+                                                           Name="HighlightBoxDetail"
+                                                           IsReadOnly="True"></syntaxHighlightBox:SyntaxHighlightBox>
+                </Grid>
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35.33" />
+            <RowDefinition Height="40.67" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBox  Margin="11,5,5,0"
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  HorizontalAlignment="Stretch"
+                  Text="{Binding FileNameText}"
+                  TextWrapping="Wrap"
+                  AcceptsReturn="True"
+                  AcceptsTab="True" />
+        <StackPanel Margin="0"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.RowSpan="2">
+            <Button Margin="5,5,11,5"
+                    Name="OpenFile"
+                    Content="Open File"
+                    Click="OpenFile_Click"></Button>
+            <Button Content="Generate Props List"
+                    Margin="5,5,11,5"
+                    x:Name="GeneratePropsList"
+                    Click="GeneratePropsList_Click" />
+        </StackPanel>
+        <DataGrid   Margin="11,5,5,11"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    MinHeight="600"
+                    MaxHeight="800"
+                    MinWidth="1000"
+                    HorizontalAlignment="Stretch"
+                    ItemsSource="{Binding PropsList}"
+                    AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Title"
+                                    Binding="{Binding Title}"
+                                    MinWidth="120" />
+                <DataGridTextColumn Header="DataType"
+                                    Binding="{Binding DataType}"
+                                    MinWidth="120" />
+                <DataGridTextColumn Header="ModelField"
+                                    Binding="{Binding ModelField}"
+                                    MinWidth="120" />
+                <DataGridTextColumn Header="Remarks"
+                                    Binding="{Binding Remarks}"
+                                    MinWidth="300"
+                                    MaxWidth="800"
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    Orientation="Vertical">
+            <Button Content="SourceDetail"
+                    Margin="5,5,11,5"
+                    Click="SourceDetail_Click" />
+            <syntaxHighlightBox:SyntaxHighlightBox Height="6000"
+                                                   Width="2000"
+                                                   IsLineNumbersMarginVisible="True"
+                                                   Name="HighlightBox"
+                                                   IsReadOnly="True">
+                <syntaxHighlightBox:SyntaxHighlightBox.LayoutTransform>
+                    <ScaleTransform ScaleX="0.1"
+                                    ScaleY="0.1" />
+                </syntaxHighlightBox:SyntaxHighlightBox.LayoutTransform>
+            </syntaxHighlightBox:SyntaxHighlightBox>
+        </StackPanel>
+    </Grid>
+</controls:MetroWindow>

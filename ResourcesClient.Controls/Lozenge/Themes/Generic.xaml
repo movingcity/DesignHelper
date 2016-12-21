@@ -1,0 +1,162 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ResourcesClient.Controls" >
+    <Style TargetType="{x:Type local:Lozenge}">
+        <!-- do not show focus dotted rectangle in lozenge when keyboard focus is obtained -->
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <!-- set the text formatting to small font mode -->
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+        <Setter Property="TextOptions.TextHintingMode" Value="Fixed" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Lozenge}">
+                    <ControlTemplate.Resources>
+                        <local:LeftPointsConverter x:Key="LeftPointsConverter"/>
+                        <local:RightPointsConverter x:Key="RightPointsConverter"/>
+                        <local:LozengeThicknessConverter x:Key="LozengeThicknessConverter"/>
+                    </ControlTemplate.Resources>
+                    <!-- experimental CacheMode setting - does this improve render performance? -->
+                    <Grid x:Name="Overall" IsSharedSizeScope="True" CacheMode="BitmapCache">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" x:Name="LineR1" MinHeight="10" SharedSizeGroup="RowHeight"/>
+                            <RowDefinition Height="*" x:Name="LineR2"/>
+                            <RowDefinition Height="Auto" x:Name="LineR3" MinHeight="10" SharedSizeGroup="RowHeight"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!-- lozenge background is filled with BackColor -->
+                        <Rectangle Fill="{TemplateBinding BackColor}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="3" SnapsToDevicePixels="True"/>
+                        <!-- lozenge color highlight section -->
+                        <Rectangle x:Name="ColorHighlight" Fill="{TemplateBinding HighLightColor}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Visibility="Hidden" SnapsToDevicePixels="True"/>
+                        
+                        <Grid x:Name="LeftEnd" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" SnapsToDevicePixels="True">
+                            <Path Stretch="Fill" Data="M 1,0 L1,1" Fill="{TemplateBinding BackColor}" Stroke="{TemplateBinding BackColor}" HorizontalAlignment="Right" SnapsToDevicePixels="True"/>
+                            <Path Stretch="Fill"  Data="{TemplateBinding LeftShape, Converter={StaticResource ResourceKey=LeftPointsConverter}}" Fill="{TemplateBinding BackColor}" StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{TemplateBinding BorderBrush}" StrokeStartLineCap="Square" StrokeEndLineCap="Square"  SnapsToDevicePixels="True"/>
+                        </Grid>
+                        
+                        <Grid x:Name="RightEnd" Grid.Column="5" Grid.Row="0" Grid.RowSpan="3" SnapsToDevicePixels="True">
+                            <Path Stretch="Fill" Data="M 1,0 L1,1" Fill="{TemplateBinding BackColor}" Stroke="{TemplateBinding BackColor}" HorizontalAlignment="Left" SnapsToDevicePixels="True"/>
+                            <Path Stretch="Fill"  Data="{TemplateBinding RightShape, Converter={StaticResource ResourceKey=RightPointsConverter}}" Fill="{TemplateBinding BackColor}" StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{TemplateBinding BorderBrush}" StrokeStartLineCap="Square" StrokeEndLineCap="Square" SnapsToDevicePixels="True"/>
+                        </Grid>
+                        
+                        <DockPanel x:Name="LeftTop" Grid.ColumnSpan="2" LastChildFill="False" Margin="0,1,0,0" Grid.RowSpan="1" Grid.Column="1" Width="Auto" Background="{TemplateBinding BackColor}" SnapsToDevicePixels="True">
+                            <Label Content="{TemplateBinding LabelLT1}" Foreground="{TemplateBinding TextColor}" Margin="0,0,4,0" Padding="0" FontSize="8" MaxWidth="30" HorizontalContentAlignment="Left" SnapsToDevicePixels="True"/>
+                            <Label Content="{TemplateBinding LabelLT2}" Foreground="{TemplateBinding TextColor}" Margin="0" Padding="0" FontSize="8" MaxWidth="30" HorizontalContentAlignment="Left" SnapsToDevicePixels="True"/>
+                        </DockPanel>
+                        
+                        <DockPanel x:Name="RightTop" Grid.ColumnSpan="2" LastChildFill="False" Margin="0,1,0,0" Grid.RowSpan="1" Grid.Column="3" Width="Auto" Background="{TemplateBinding BackColor}" SnapsToDevicePixels="True">
+                            <Label Content="{TemplateBinding LabelRT1}" Foreground="{TemplateBinding TextColor}" DockPanel.Dock="Right" Margin="4,0,0,0" Padding="0" FontSize="8" MaxWidth="30" HorizontalContentAlignment="Right" SnapsToDevicePixels="True"/>
+                            <Label Content="{TemplateBinding LabelRT2}" Foreground="{TemplateBinding TextColor}" DockPanel.Dock="Right" Margin="0" Padding="0" FontSize="8" MaxWidth="30" HorizontalContentAlignment="Left" SnapsToDevicePixels="True"/>
+                        </DockPanel>
+                        
+                        <DockPanel x:Name="LeftBottom" Grid.ColumnSpan="2" LastChildFill="False" Margin="0,0,0,2" Grid.RowSpan="1" Grid.Column="1" Width="Auto" Grid.Row="2" Background="{TemplateBinding BackColor}" SnapsToDevicePixels="True">
+                            <Image MaxHeight="10" MaxWidth="10" MinWidth="10" Source="{TemplateBinding IconSourceL1}" SnapsToDevicePixels="True"/>
+                            <Image MaxHeight="10" MaxWidth="10" MinWidth="10" Source="{TemplateBinding IconSourceL2}" SnapsToDevicePixels="True"/>
+                            <Image MaxHeight="10" MaxWidth="10" MinWidth="10" Source="{TemplateBinding IconSourceL3}" SnapsToDevicePixels="True"/>
+                        </DockPanel>
+                        
+                        <DockPanel x:Name="RightBottom" Grid.ColumnSpan="2" LastChildFill="False" Margin="0,0,0,2" Grid.RowSpan="1" Grid.Column="3" Width="Auto" Grid.Row="2" Background="{TemplateBinding BackColor}" SnapsToDevicePixels="True">
+                            <Image MaxHeight="10" MaxWidth="10" MinWidth="10" Source="{TemplateBinding IconSourceR1}" DockPanel.Dock="Right" SnapsToDevicePixels="True"/>
+                            <Image MaxHeight="10" MaxWidth="10" MinWidth="10" Source="{TemplateBinding IconSourceR2}" DockPanel.Dock="Right" SnapsToDevicePixels="True"/>
+                            <Image MaxHeight="10" MaxWidth="10" MinWidth="10" Source="{TemplateBinding IconSourceR3}" DockPanel.Dock="Right" SnapsToDevicePixels="True"/>
+                        </DockPanel>
+
+                        <Grid x:Name="LeftText" Grid.Column="1" Grid.Row="1" Background="{TemplateBinding BackColor}" HorizontalAlignment="Left" VerticalAlignment="Center" SnapsToDevicePixels="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="LabelR1C1" Content="{TemplateBinding LabelR1C1}" Foreground="{TemplateBinding TextColor}"  HorizontalContentAlignment="Left" Margin="0" Padding="0" FontSize="10" SnapsToDevicePixels="True"/>
+                            <Label x:Name="LabelR2C1" Content="{TemplateBinding LabelR2C1}" Foreground="{TemplateBinding TextColor}"  Grid.Row="1" HorizontalContentAlignment="Left" Margin="0" Padding="0" FontSize="10" SnapsToDevicePixels="True"/>
+                            <Label x:Name="LabelR3C1" Content="{TemplateBinding LabelR3C1}" Foreground="{TemplateBinding TextColor}"  Grid.Row="2" HorizontalContentAlignment="Left" Margin="0" Padding="0" FontSize="10" SnapsToDevicePixels="True"/>
+                        </Grid>
+
+                        <Grid x:Name="RightText" Grid.Column="4" Grid.Row="1" Background="{TemplateBinding BackColor}" HorizontalAlignment="Right" VerticalAlignment="Center" SnapsToDevicePixels="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="LabelR1C3" Content="{TemplateBinding LabelR1C3}" Foreground="{TemplateBinding TextColor}"  HorizontalContentAlignment="Right" Margin="0" Padding="0" FontSize="10" SnapsToDevicePixels="True"/>
+                            <Label x:Name="LabelR2C3" Content="{TemplateBinding LabelR2C3}" Foreground="{TemplateBinding TextColor}"  Grid.Row="1" HorizontalContentAlignment="Right"  Margin="0" Padding="0" FontSize="10" SnapsToDevicePixels="True"/>
+                            <Label x:Name="LabelR3C3" Content="{TemplateBinding LabelR3C3}" Foreground="{TemplateBinding TextColor}"  Grid.Row="2" HorizontalContentAlignment="Right" Margin="0" Padding="0" FontSize="10" SnapsToDevicePixels="True"/>
+                        </Grid>
+
+                        <Grid x:Name="CenterText" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" Background="{TemplateBinding BackColor}" HorizontalAlignment="Stretch" VerticalAlignment="Center" SnapsToDevicePixels="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="LabelR1C2" Content="{TemplateBinding LabelR1C2}" Foreground="{TemplateBinding TextColor}"  HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0" Padding="0" FontSize="10" SnapsToDevicePixels="True"/>
+                            <Label x:Name="LabelR2C2" Content="{TemplateBinding LabelR2C2}" Foreground="{TemplateBinding TextColor}"  Grid.Row="1" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0" Padding="0" FontSize="10" SnapsToDevicePixels="True"/>
+                            <Label x:Name="LabelR3C2" Content="{TemplateBinding LabelR3C2}" Foreground="{TemplateBinding TextColor}"  Grid.Row="2" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0" Padding="0" FontSize="10" SnapsToDevicePixels="True"/>
+                        </Grid>
+
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness, Converter={StaticResource ResourceKey=LozengeThicknessConverter}}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="3"  SnapsToDevicePixels="True"/>
+                    </Grid>
+                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="AllowedLines" Value="1">
+                            <Setter TargetName="LabelR1C1" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR2C1" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="LabelR3C1" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="LabelR1C2" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR2C2" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="LabelR3C2" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="LabelR1C3" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR2C3" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="LabelR3C3" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="AllowedLines" Value="2">
+                            <Setter TargetName="LabelR1C1" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR2C1" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR3C1" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="LabelR1C2" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR2C2" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR3C2" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="LabelR1C3" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR2C3" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR3C3" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="AllowedLines" Value="3">
+                            <Setter TargetName="LabelR1C1" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR2C1" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR3C1" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR1C2" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR2C2" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR3C2" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR1C3" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR2C3" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LabelR3C3" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Setter TargetName="ColorHighlight" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="CenterText" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HighLightColor}" />
+                            <Setter TargetName="LeftText" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HighLightColor}" />
+                            <Setter TargetName="RightText" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HighLightColor}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CenterText" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectionBackColor}" />
+                            <Setter TargetName="LabelR1C2" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectionTextColor}" />
+                            <Setter TargetName="LabelR2C2" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectionTextColor}" />
+                            <Setter TargetName="LabelR3C2" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectionTextColor}" />
+                        </Trigger>
+                        
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

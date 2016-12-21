@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="ResourcesClient.Controls.EditSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:local="clr-namespace:ResourcesClient.Controls"
+             x:Name="EditSelectorControl"
+             Focusable="True" GotKeyboardFocus="EditSelectorControl_GotKeyboardFocus"
+             Loaded="EditSelectorControl_Loaded">
+    <DockPanel KeyboardNavigation.TabNavigation="Local">
+        <DockPanel.Resources>
+            <local:NegateBoolToVisibilityConverter x:Key="VisibilityConverter" />
+            <Style TargetType="Button" x:Key="PlusButton">
+                <Setter Property="MinWidth" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="MinHeight" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Padding" Value="1"/>
+            </Style>
+        </DockPanel.Resources>
+        <Button DockPanel.Dock="Right" VerticalAlignment="Top" HorizontalAlignment="Right" Style="{StaticResource PlusButton}" 
+                Click="Button_Click" Name="PlusButton" TabIndex="2" Margin="3,0,0,0"
+                ToolTip="{Binding ElementName=EditSelectorControl, Path=TooltipButton}"
+                Visibility="{Binding Path=IsReadOnly, ElementName=EditSelectorControl, Converter={StaticResource VisibilityConverter}}">
+            <!-- plus symbol is drawn using Path -->
+            <Path 
+                Fill="Black"
+                Stroke="{x:Null}"
+                StrokeThickness="0.5"
+                Data="M3.875,0 L5.125,0 5.125,3.875 9,3.875 9,5.125 5.125,5.125 5.125,9 3.875,9 3.875,5.125 0,5.125 0,3.875 3.875,3.875 3.875,0 z" />
+        </Button>
+        <local:PlainRichTextBox DockPanel.Dock="Left" VerticalAlignment="Stretch" MinHeight="23" MinWidth="150"
+                        VerticalScrollBarVisibility="Auto" TabIndex="1" x:Name="EditTextBox" 
+                        LostKeyboardFocus="EditTextBox_LostKeyboardFocus"
+                        TextChanged="EditTextBox_TextChanged"
+                        ToolTip="{Binding ElementName=EditSelectorControl, Path=TooltipTextBox}"
+                        IsReadOnly="{Binding Path=IsReadOnly, ElementName=EditSelectorControl}"/>
+    </DockPanel>
+</UserControl>

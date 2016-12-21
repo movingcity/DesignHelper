@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0BFFA352-50CD-47B6-AE2A-155CCCA2B7FF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ResourcesClient.Controls</RootNamespace>
+    <AssemblyName>ResourcesClient.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PlexityHide.GTP.WPF">
+      <HintPath>..\..\Lib\PlexityHide.GTP.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\..\Lib\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoCompleteCombo\AutoCompleteCombo.cs" />
+    <Compile Include="DataGridFilter\DataGridColumnExtensions.cs" />
+    <Compile Include="DataGridFilter\DataGridColumnFilter.cs" />
+    <Compile Include="DataGridFilter\DataGridComboBoxExtensions.cs" />
+    <Compile Include="DataGridFilter\DataGridExtensions.cs" />
+    <Compile Include="DataGridFilter\DataGridFilterCommand.cs" />
+    <Compile Include="DataGridFilter\DataGridHeaderFilterControl.cs" />
+    <Compile Include="DataGridFilter\Querying\FilteringEventArgs.cs" />
+    <Compile Include="DataGridFilter\Querying\ParameterCounter.cs" />
+    <Compile Include="DataGridFilter\Querying\Query.cs" />
+    <Compile Include="DataGridFilter\Querying\QueryController.cs" />
+    <Compile Include="DataGridFilter\Querying\QueryControllerFactory.cs" />
+    <Compile Include="DataGridFilter\Querying\QueryCreator.cs" />
+    <Compile Include="DataGridFilter\Querying\StringFilterExpressionCreator.cs" />
+    <Compile Include="DataGridFilter\Support\BooleanToHeightConverter.cs" />
+    <Compile Include="DataGridFilter\Support\CheckBoxValueConverter.cs" />
+    <Compile Include="DataGridFilter\Support\ClearFilterButtonVisibilityConverter.cs" />
+    <Compile Include="DataGridFilter\Support\ComboBoxToQueryStringConverter.cs" />
+    <Compile Include="DataGridFilter\Support\DatePickerToQueryStringConverter.cs" />
+    <Compile Include="DataGridFilter\Support\DelayTextBox.cs" />
+    <Compile Include="DataGridFilter\Support\DisplayStringAttribute.cs" />
+    <Compile Include="DataGridFilter\Support\DynamicLibrary.cs" />
+    <Compile Include="DataGridFilter\Support\EnumDisplayer.cs" />
+    <Compile Include="DataGridFilter\Support\FilterData.cs" />
+    <Compile Include="DataGridFilter\Support\FilterOperator.cs" />
+    <Compile Include="DataGridFilter\Support\FilterType.cs" />
+    <Compile Include="DataGridFilter\Support\FontSizeToHeightConverter.cs" />
+    <Compile Include="DataGridFilter\Support\MyBooleanToVisibilityConverter.cs" />
+    <Compile Include="DataGridFilter\Support\MyOppositeBooleanToVisibilityConverter.cs" />
+    <Compile Include="DataGridFilter\Support\VisibilityToWidthConverter.cs" />
+    <Compile Include="EditSelector\EditSelector.xaml.cs">
+      <DependentUpon>EditSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditSelector\NegateBoolToVisibilityConverter.cs" />
+    <Compile Include="EditSelector\PlainRichTextBox.cs" />
+    <Compile Include="EditSelector\SelectWindow.xaml.cs">
+      <DependentUpon>SelectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gantt\Adorners\DragAdorner.cs" />
+    <Compile Include="Gantt\Adorners\HighlightAdorner.cs" />
+    <Compile Include="Gantt\Adorners\RubberbandAdorner.cs" />
+    <Compile Include="Gantt\Adorners\TimelineAdorner.cs" />
+    <Compile Include="Gantt\Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Gantt\Converters\DateToStringConverter.cs" />
+    <Compile Include="Gantt\Converters\GanttItemsSourceConverter.cs" />
+    <Compile Include="Gantt\Converters\NullImageConverter.cs" />
+    <Compile Include="Gantt\Converters\WidthToLocationConverter.cs" />
+    <Compile Include="Gantt\Data\IContextMenuItemData.cs" />
+    <Compile Include="Gantt\Data\IResourceData.cs" />
+    <Compile Include="Gantt\Data\ITaskData.cs" />
+    <Compile Include="Gantt\ResourcesGantt.xaml.cs">
+      <DependentUpon>ResourcesGantt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gantt\Utility\Helper.cs" />
+    <Compile Include="Lozenge\Lozenge.cs" />
+    <Compile Include="Lozenge\ValueConverter.cs" />
+    <Compile Include="MDIControl\IMDIChild.cs" />
+    <Compile Include="MDIControl\IMDIControl.cs" />
+    <Compile Include="MDIControl\MDIChild.cs" />
+    <Compile Include="MDIControl\MDIControl.xaml.cs">
+      <DependentUpon>MDIControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MDIControl\ScrollableTabPanel.cs" />
+    <Compile Include="MultilineTextEditor\MultilineTextEditor.cs" />
+    <Compile Include="MultiSelectControl\MultiSelectControl.xaml.cs">
+      <DependentUpon>MultiSelectControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationControl\NotificationControl.xaml.cs">
+      <DependentUpon>NotificationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationControl\NotifyTabItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rating\Rating.cs" />
+    <Compile Include="Rating\RatingItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="DataGridFilter\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditSelector\EditSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditSelector\SelectWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Gantt\ResourcesGantt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lozenge\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MDIControl\MDIControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MultilineTextEditor\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MultiSelectControl\MultiSelectControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NotificationControl\NotificationControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Rating\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="NotificationControl\Images\PinAutoHide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MultiSelectControl\Images\ButtonArrow_Left.png" />
+    <Resource Include="MultiSelectControl\Images\ButtonArrow_Right.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Gantt\Images\leftarrow.png" />
+    <Resource Include="Gantt\Images\rightarrow.png" />
+    <Resource Include="Gantt\Images\zoom.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

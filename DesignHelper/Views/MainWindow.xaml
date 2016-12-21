@@ -1,0 +1,43 @@
+﻿<controls:MetroWindow x:Class="DesignHelper.MainWindow"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="MainWindow"
+        SizeToContent="WidthAndHeight">
+    <Grid>
+        <StackPanel Margin="26">
+            <Button Name="XamlToResx"
+                    Content="XamlToResx"
+                    Margin="0,0,0,7"
+                    Click="XamlToResx_Click" />
+            <Button Name="XamlBindings"
+                    Content="XamlBindings"
+                    Margin="0,0,0,7"
+                    Click="XamlBindings_Click" />
+            <Button Content="CreateDataGrid"
+                    Name="CreateDataGrid"
+                    Margin="0,0,0,7"
+                    Click="CreateDataGrid_Click" />
+            <Button Content="RemoveResx"
+                    Name="RemoveResx"
+                    Margin="0,0,0,7"
+                    Click="RemoveResx_Click" />
+            <Button Content="TestEntities"
+                    Name="TestEntities"
+                    Margin="0,0,0,7"
+                    IsEnabled="False"
+                    Click="TestEntities_Click" />
+            <Button Content="EntityToAdapter"
+                    Name="EntityToAdapter"
+                    Margin="0,0,0,7"
+                    Click="EntityToAdapter_Click" />
+            <Button Content="ListProps"
+                    Name="ListProps"
+                    Margin="0,0,0,7"
+                    Click="ListProps_Click" />
+        </StackPanel>
+    </Grid>
+</controls:MetroWindow>
+

@@ -1,0 +1,73 @@
+﻿<controls:MetroWindow x:Class="DesignHelper.CreateDataGrid"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="XamlToResx">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Margin="11,0,5,11"
+                    Grid.Row="0"
+                    Grid.Column="0">
+            <Label Content="Prefix:"></Label>
+            <TextBox Text="{Binding Prefix}"
+                     MinWidth="200"></TextBox>
+        </StackPanel>
+        <DataGrid   Margin="11,0,5,11"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    ItemsSource="{Binding GridList}"
+                    AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Header"
+                                    Binding="{Binding Header}"
+                                    MinWidth="120" />
+                <DataGridTextColumn Header="Binding"
+                                    Binding="{Binding Binding}"
+                                    MinWidth="120" />
+                <DataGridTextColumn Header="Width"
+                                    Binding="{Binding Width}"
+                                    MinWidth="120" />
+                <DataGridTextColumn Header="MaxWidth"
+                                    Binding="{Binding MaxWidth}"
+                                    MinWidth="120" />
+                <DataGridCheckBoxColumn Header="IsCSV"
+                                        Binding="{Binding IsCSV}"
+                                        MinWidth="120" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Margin="0"
+                    Grid.Row="1"
+                    Grid.Column="1">
+            <Button Content="Create"
+                    Margin="11,0,5,11"
+                    Name="GridToResx"
+                    Click="Create_Click" />
+        </StackPanel>
+        <ScrollViewer Grid.Row="2"
+                      Grid.Column="0">
+            <TextBox MinHeight="200"
+                     Margin="11,0,5,11"
+                     Text="{Binding GridXAML}" />
+        </ScrollViewer>
+        <StackPanel Margin="0"
+                    Grid.Row="2"
+                    Grid.Column="1">
+            <Button Content="Copy To Clipboard"
+                    Margin="11,0,5,11"
+                    Name="Copy"
+                    Click="Copy_Click" />
+        </StackPanel>
+    </Grid>
+</controls:MetroWindow>
