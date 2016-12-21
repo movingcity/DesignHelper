@@ -12,7 +12,7 @@
                     Content="XamlToResx"
                     Margin="0,0,0,7"
                     Click="XamlToResx_Click" />
-            <Button Name="XamlBindings"
+            <Button Name="XamlBindings" 
                     Content="XamlBindings"
                     Margin="0,0,0,7"
                     Click="XamlBindings_Click" />
